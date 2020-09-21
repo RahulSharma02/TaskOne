@@ -96,7 +96,7 @@ const Table = () => {
 
 
 
-          {localData.map((d, index) => {
+          { localData && localData.map((d, index) => {
             return (
               <tr>
                 <td>
