@@ -11,22 +11,25 @@ const Table = () => {
   // fetching data from local storage
   // setting localstorage data to a hook
   useEffect(() => {
-    const superh_data = JSON.parse(localStorage.getItem('formData'));
+    const superh_data = JSON.parse(localStorage.getItem('formData')) ;
+ if(superh_data){
+  setLocalData(superh_data.map(d => {
+    return {
+      select: d.select,
+      id: d.id,
+      fname: d.fname,
+      lname: d.lname,
+      sname: d.sname,
+      email: d.email,
+      gender: d.gender,
+      age: d.age
+    }
+  })
+  )
 
-    // console.log("data",superh_data)
-    setLocalData(superh_data.map(d => {
-      return {
-        select: d.select,
-        id: d.id,
-        fname: d.fname,
-        lname: d.lname,
-        sname: d.sname,
-        email: d.email,
-        gender: d.gender,
-        age: d.age
-      }
-    })
-    )
+ }
+    
+  
   }, [])
 
 
