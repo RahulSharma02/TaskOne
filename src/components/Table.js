@@ -48,6 +48,26 @@ const Table = () => {
     setLocalData(filtered)
     console.log("im del array", arrayDel)
 
+    const filtered = superh_data.filter(item => arrayDel.find(id => id !== item.id))
+    console.log("Filtered", filtered)
+    localStorage.setItem('formData', JSON.stringify(filtered));
+    setLocalData(filtered)
+    console.log("im del array", arrayDel)
+
+  }
+
+  // function to sort the firstname
+
+
+  const sorting = () => {
+
+    localData.map((data) => {
+      var res = data.fname
+      //  const fres = res.sort((a,b)=> a<b)
+      console.log('im res', res)
+      //  console.log('im fres',fres)
+
+    })
   }
 
   // function to sort the firstname
