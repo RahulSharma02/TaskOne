@@ -1,16 +1,19 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import Modal from 'react-modal';
 // import Dataentry from './Dataentry';
 
 export default function Addfile() {
   const [openModal, setOpenModal] = useState(false);
 
+  const id  = Math.random();
 
 
   //  state for forms
 
   const [inputData, setInputData] = useState({
 
+    id:id,
+    select:false,
     fname: "",
     lname: "",
     sname: "",
@@ -46,13 +49,13 @@ export default function Addfile() {
     //    setStoreData(inputData)
     localData();
     setInputData({
-      
+
       fname: "",
-    lname: "",
-    sname: "",
-    email: "",
-    gender: "",
-    age: ""
+      lname: "",
+      sname: "",
+      email: "",
+      gender: "",
+      age: ""
 
     })
   }
@@ -79,7 +82,6 @@ export default function Addfile() {
   //     localData();
 
   // },[storeData])
-
 
 
 
