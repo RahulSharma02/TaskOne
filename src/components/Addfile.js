@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from 'react-modal';
 // import Dataentry from './Dataentry';
 
-export default function Addfile() {
+export default function Addfile({setLocalData}) {
   const [openModal, setOpenModal] = useState(false);
 
   const id  = Math.random();
@@ -47,9 +47,11 @@ export default function Addfile() {
   const onDataSubmit = (e) => {
     e.preventDefault();
     //    setStoreData(inputData)
+    
     localData();
     setInputData({
-
+      id:id,
+      select:false,
       fname: "",
       lname: "",
       sname: "",
@@ -75,7 +77,11 @@ export default function Addfile() {
       console.log("UpdatedData", updatedData)
       localStorage.setItem("formData", JSON.stringify(updatedData))
     }
+    setOpenModal(false)
 
+    const localSdata = JSON.parse(localStorage.getItem('formData')) ;
+    setLocalData(localSdata)
+    
   }
 
   // useEffect (()=>{
@@ -96,37 +102,37 @@ export default function Addfile() {
 
         <form onSubmit={onDataSubmit}>
           <div className="md-form mb-5">
-            <input type="text" id="Form-fname" class="form-control validate" name="fname"
+            <input type="text" id="Form-fname" className="form-control validate" name="fname" required
               value={inputData.fname} onChange={onInpChange} />
             <label data-error="wrong" data-success="right" htmlFor="Form-fname">FirstName</label>
           </div>
 
           <div className="md-form mb-5">
-            <input type="text" id="Form-lname" class="form-control validate" name="lname"
+            <input type="text" id="Form-lname" className="form-control validate" name="lname" required
               value={inputData.lname} onChange={onInpChange} />
             <label data-error="wrong" data-success="right" htmlFor="Form-lname">LastName</label>
           </div>
 
           <div className="md-form mb-5">
-            <input type="text" id="Form-sname" class="form-control validate" name="sname"
+            <input type="text" id="Form-sname" className="form-control validate" name="sname" required
               value={inputData.sname} onChange={onInpChange} />
             <label data-error="wrong" data-success="right" htmlFor="Form-sname">SuperheroName</label>
           </div>
 
           <div className="md-form mb-5">
-            <input type="Email" id="Form-email" class="form-control validate" name="email"
+            <input type="Email" id="Form-email" className="form-control validate" name="email" required
               value={inputData.email} onChange={onInpChange} />
             <label data-error="wrong" data-success="right" htmlFor="Form-email">Email</label>
           </div>
 
           <div className="md-form mb-5">
-            <input type="text" id="Form-gender" class="form-control validate" name="gender"
+            <input type="text" id="Form-gender" className="form-control validate" name="gender" required
               value={inputData.gender} onChange={onInpChange} />
             <label data-error="wrong" data-success="right" htmlFor="Form-gender">Gender</label>
           </div>
 
           <div className="md-form mb-5">
-            <input type="text" id="Form-age" class="form-control validate" name="age"
+            <input type="text" id="Form-age" className="form-control validate" name="age" required
               value={inputData.age} onChange={onInpChange} />
             <label data-error="wrong" data-success="right" htmlFor="Form-age">Age</label>
           </div>
@@ -136,10 +142,7 @@ export default function Addfile() {
 
 
         </form>
-        <div>
-          <button type="button" className="btn btn-outline-info m-3"
-            onClick={() => { setOpenModal(false) }} >close</button>
-        </div>
+      
       </Modal>
     </>
   );
