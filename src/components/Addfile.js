@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from 'react-modal';
 // import Dataentry from './Dataentry';
 
-export default function Addfile() {
+export default function Addfile({setLocalData) {
   const [openModal, setOpenModal] = useState(false);
 
   const id  = Math.random();
@@ -49,7 +49,8 @@ export default function Addfile() {
     //    setStoreData(inputData)
     localData();
     setInputData({
-
+      id:id,
+      select:false,
       fname: "",
       lname: "",
       sname: "",
@@ -76,7 +77,8 @@ export default function Addfile() {
       localStorage.setItem("formData", JSON.stringify(updatedData))
     }
     setOpenModal(false)
-
+     const localSdata = JSON.parse(localStorage.getItem('formData')) ;
+     setLocalData(localSdata)
   }
 
   // useEffect (()=>{
