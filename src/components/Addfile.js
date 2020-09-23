@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from 'react-modal';
 // import Dataentry from './Dataentry';
 
-export default function Addfile({setLocalData) {
+export default function Addfile({setLocalData}) {
   const [openModal, setOpenModal] = useState(false);
 
   const id  = Math.random();
