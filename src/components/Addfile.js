@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import Modal from 'react-modal';
 // import Dataentry from './Dataentry';
 
-export default function Addfile({setLocalData}) {
+export default function Addfile({ setLocalData }) {
   const [openModal, setOpenModal] = useState(false);
 
-  const id  = Math.random();
+  const id = Math.random();
 
 
   //  state for forms
 
   const [inputData, setInputData] = useState({
 
-    id:id,
-    select:false,
+    id: id,
+    select: false,
     fname: "",
     lname: "",
     sname: "",
@@ -47,11 +47,11 @@ export default function Addfile({setLocalData}) {
   const onDataSubmit = (e) => {
     e.preventDefault();
     //    setStoreData(inputData)
-    
+
     localData();
     setInputData({
-      id:id,
-      select:false,
+      id: id,
+      select: false,
       fname: "",
       lname: "",
       sname: "",
@@ -79,18 +79,10 @@ export default function Addfile({setLocalData}) {
     }
     setOpenModal(false)
 
-    const localSdata = JSON.parse(localStorage.getItem('formData')) ;
+    const localSdata = JSON.parse(localStorage.getItem('formData'));
     setLocalData(localSdata)
-    
+
   }
-
-  // useEffect (()=>{
-  //     localData();
-
-  // },[storeData])
-
-
-
 
   return (
     <>
@@ -142,7 +134,6 @@ export default function Addfile({setLocalData}) {
 
 
         </form>
-      
       </Modal>
     </>
   );
