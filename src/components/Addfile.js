@@ -75,6 +75,7 @@ export default function Addfile() {
       console.log("UpdatedData", updatedData)
       localStorage.setItem("formData", JSON.stringify(updatedData))
     }
+    setOpenModal(false)
 
   }
 
@@ -136,10 +137,7 @@ export default function Addfile() {
 
 
         </form>
-        <div>
-          <button type="button" className="btn btn-outline-info m-3"
-            onClick={() => { setOpenModal(false) }} >close</button>
-        </div>
+       
       </Modal>
     </>
   );
