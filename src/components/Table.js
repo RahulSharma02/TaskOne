@@ -150,7 +150,7 @@ const Table = () => {
   return (
     <div className="container-fluid">
       <Delete delData={delClick} />
-      <Addfile />
+      <Addfile setLocalData = {setLocalData} />
       <Search getData={getData} />
       <table className="table table-striped">
         <thead className="bg-dark text-light">
