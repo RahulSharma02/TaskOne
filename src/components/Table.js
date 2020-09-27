@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import '../App.css';
 import Addfile from './Addfile';
 import Search from './Search';
+import DeleteModal from './DeleteModal';
 
 const Table = () => {
   const [localData, setLocalData] = useState([]);
   const [searchData, setSearchData] = useState([]);
-
+  const [searchQuery, setSearchQuery] = useState("");
   // setting localstorage data to a hook
   useEffect(() => {
     const superh_data = JSON.parse(localStorage.getItem('formData'));
@@ -26,13 +28,6 @@ const Table = () => {
     }
   }, [])
 
-  // function to be passed to delete onclick
-
-  const delClick = () => {
-    let filtered = localData.filter((data) => !data.select);
-    localStorage.setItem('formData', JSON.stringify(filtered));
-    setLocalData(filtered)
-  }
 
   // function to sort the firstname
   const sorting = (key) => {
@@ -47,16 +42,35 @@ const Table = () => {
     setLocalData(newArr)
 
   }
+  // function to search data
 
   const getData = (query) => {
-    const filteredData = localData.filter(element => {
-      return element.fname.toLowerCase().includes(query.toLowerCase())
+    setSearchQuery(query)
+    const keys = [
+      "fname",
+      "lname",
+      "sname",
+      "email",
+      "gender",
+      "age",
+    ]
+    const filteredData = localData.map(element => {
+      const data = keys.find(key => {
+        return element[key].toLowerCase().includes(query.toLowerCase())
+      })
+
+      return data && element
     })
-    setSearchData(filteredData)
+
+    const filData = filteredData.filter(d => d)
+    setSearchData(filData)
   }
 
   const getTableBody = () => {
-    const toRender = searchData.length > 0 ? [...searchData] : localData ? [...localData] : [];
+    const toRender = searchQuery.length > 0 ? [...searchData] : localData ? [...localData] : [];
+    if (searchQuery.length > 0 && searchData.length === 0) {
+      return <p>No data Found!</p>
+    }
     return toRender.map((d, index) => (
       <tr key={index}>
         <td>
@@ -86,25 +100,20 @@ const Table = () => {
 
   return (
     <div className="container-fluid">
-      <button
-        type="button"
-        disabled={localData.length === 0}
-        className="btn btn-outline-danger m-3"
-        onClick={delClick}
-      >Delete</button>
+      <DeleteModal localData={localData} setLocalData={setLocalData} />
       <Addfile setLocalData={setLocalData} />
       <Search getData={getData} />
       <table className="table table-striped">
         <thead className="bg-dark text-light">
-          <tr>
+          <tr className="cursor">
             <th scope="col"></th>
             <th scope="col">#</th>
             <th scope="col" onClick={() => sorting("fname")}>Firstname</th>
             <th scope="col" onClick={() => sorting("lname")}>Lastname</th>
-            <th scope="col">SuperheroName</th>
-            <th scope="col">Email</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Age</th>
+            <th scope="col" onClick={() => sorting("sname")}>SuperheroName</th>
+            <th scope="col" onClick={() => sorting("email")}>Email</th>
+            <th scope="col" onClick={() => sorting("gender")}>Gender</th>
+            <th scope="col" onClick={() => sorting("age")}>Age</th>
           </tr>
         </thead>
         <tbody>

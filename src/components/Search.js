@@ -26,11 +26,7 @@ class Search extends Component {
 
   }
 
-  // function to get data 
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-  }
 
 
   render() {
@@ -40,10 +36,10 @@ class Search extends Component {
           {/* <i className="fa fa-search" aria-hidden="true"></i> */}
           <input className="form-control form-control-sm m-3 w-50" type="text" placeholder="Search"
             onChange={this.handleChange} aria-label="Search" />
-          {/* <button onClick={this.getData}>Search</button> */}
+
         </form>
 
-        <div>{this.state.filteredData.map(i => <p>{i.fname}</p>)}</div>
+
       </>
 
     )
