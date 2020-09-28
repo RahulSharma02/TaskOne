@@ -1,14 +1,16 @@
 export default function validateInfo(values) {
     let errors = {}
+    const regexEmail = RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)
+    const regexNames = RegExp(/^[a-z ,.'-]+$/i)
     // let regex = /^[a-z ,.'-]+$/i;
 
     if (!values.fname.trim()) {
         errors.fname = "FirstName Required"
-    } else if (/^[a-z ,.'-]+$/i.test(values.fname)) {
-        errors.fname = "Only english alphabets are allowed"
     }
     else if (values.fname.length < 2) {
         errors.fname = "Firstname must be longer than 2 alphabets"
+    } else if (!regexNames.test(values.fname)) {
+        errors.fname = "Enter alphabets only"
     }
 
     // else if (!a - zA - Z * (values.fname)) {
@@ -18,7 +20,7 @@ export default function validateInfo(values) {
         errors.lname = "LastName Required"
     } else if (values.lname.length < 2) {
         errors.lname = "LastName must be longer than 2 alphabet"
-    } else if (/^[A-Za-z]+$/.test(values.fname)) {
+    } else if (!regexNames.test(values.lname)) {
         errors.lname = "Enter alphabets only"
     }
     //  else if (![a - zA - Z *] (values.lname)) {
@@ -27,9 +29,8 @@ export default function validateInfo(values) {
 
     // email 
     if (!values.email) {
-        errors.email = "Email required"
-    }
-    else if (!/\S+@\S+\.\S+/.test(values.email)) {
+        errors.email = 'Email required';
+    } else if (!/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(values.email)) {
         errors.email = 'Email address is invalid';
     }
 
@@ -39,6 +40,8 @@ export default function validateInfo(values) {
         errors.sname = "Superhero Name is Required"
     } else if (values.sname.length < 2) {
         errors.sname = "Superhero must be longer than 2 alphabets"
+    } else if (!regexNames.test(values.sname)) {
+        errors.sname = "Enter alphabets only"
     }
 
     // gender

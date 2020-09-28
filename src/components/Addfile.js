@@ -128,7 +128,7 @@ export default function Addfile({ setLocalData }) {
 
           <div className="md-form mb-5">
             <label data-error="wrong" data-success="right" htmlFor="Form-email">Email</label>
-            <input type="Email" id="Form-email" className="form-control validate" name="email" required
+            <input type="Email" id="Form-email" className="form-control validate" name="email"
               value={email} onChange={onInpChange} />
             {errors.email && <p>{errors.email}</p>}
           </div>
