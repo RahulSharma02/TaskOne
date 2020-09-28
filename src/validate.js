@@ -1,6 +1,6 @@
 export default function validateInfo(values) {
     let errors = {}
-    const regexEmail = RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)
+    // const regexEmail = RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)
     const regexNames = RegExp(/^[a-z ,.'-]+$/i)
     // let regex = /^[a-z ,.'-]+$/i;
 
@@ -39,7 +39,7 @@ export default function validateInfo(values) {
     if (!values.sname.trim()) {
         errors.sname = "Superhero Name is Required"
     } else if (values.sname.length < 2) {
-        errors.sname = "Superhero must be longer than 2 alphabets"
+        errors.sname = "Name must be longer than 2 alphabets"
     } else if (!regexNames.test(values.sname)) {
         errors.sname = "Enter alphabets only"
     }
